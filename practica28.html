@@ -9,10 +9,25 @@
 <body>
     <section class="flex flex-col items-center w-full gap-5">
         <h4 class="text-4xl font-bold text-gray-800">P-2.1 ¿Es numero par?</h4>
-        <div class="flex flex-row items-center justify-aroundr gap-5 text-lg">
-            <p class="font-semibold">Ingresa un numero: </p>
+        <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
             <input type="text" name="" id="EsParInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
-            <span id="EsParOutput" class="font-medium p-2"></span>
+            <span id="EsParOutput" class="font-medium p-2 w-1/2"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.1 Numero mayor</h4>
+        <div class="flex flex-row items-start justify-center gap-5 text-lg w-full ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <div class="flex flex-col gap-2">
+                <input type="text" name="" id="MayorEntrada" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+                <button id="AgregaNumero" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Agregar numero</button>
+            </div>
+            <div class="flex flex-col gap-2">
+                <span id="ArregloNumMayor" class=" p-2 w-42 h-12 rounded-lg overflow-hidden border-2 border-solid border-gray-200"></span>
+                <button id="EncuentraMayor" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Encontrar numero mayor</button>
+            </div>
+            <span id="MuestraMayor" class="font-medium p-2 w-1/2"></span>
         </div>
     </section>
     <script>
@@ -29,7 +44,43 @@
             }
         });
 
-        
+        //Practica 2.2 
+        const numeros = []; 
+        const MayorEntrada = document.getElementById('MayorEntrada'); 
+        const AgregaNumero = document.getElementById('AgregaNumero'); 
+        const ArregloNumMayor = document.getElementById('ArregloNumMayor'); 
+        const EncuentraMayor = document.getElementById('EncuentraMayor'); 
+        const MuestraMayor = document.getElementById('MuestraMayor'); 
+
+        AgregaNumero.addEventListener('click', () => {
+            numeros.push(MayorEntrada.value); 
+            ArregloNumMayor.textContent = numeros.join('-');
+            MayorEntrada.value = '';
+        })
+        EncuentraMayor.addEventListener('click', () => {
+            const empates =[]; 
+            let mayor = { index: 0, numero: 0}; 
+            
+            for (let index = 0; index < numeros.length; index++) {
+                if (numeros[index] > mayor.numero) {
+                    mayor.index = index+1;
+                    mayor.numero = numeros[index]; 
+                    empates.splice(0, empates.length);
+                } else if(numeros[index] === mayor.numero){
+                    if (empates.length === 0) {
+                        empates.push(mayor.index, index+1);
+                    } else {
+                        empates.push(index+1); 
+                    } 
+                } 
+            } 
+
+            if (empates.length > 0) {
+                MuestraMayor.textContent = "Hay un empate entre los siguientes indices: "+ empates.toString();
+            } else {
+                MuestraMayor.textContent = "El mayor numero encontrado es: "+ mayor.numero;
+            }
+        });
     </script>
 </body>
 </html> 
