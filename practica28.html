@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="space-y-10">
     <section class="flex flex-col items-center w-full gap-5">
         <h4 class="text-4xl font-bold text-gray-800">P-2.1 ¿Es numero par?</h4>
         <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
@@ -16,7 +16,7 @@
         </div>
     </section>
     <section class="flex flex-col items-center w-full gap-5">
-        <h4 class="text-4xl font-bold text-gray-800">P-2.1 Numero mayor</h4>
+        <h4 class="text-4xl font-bold text-gray-800">P-2.2 Numero mayor</h4>
         <div class="flex flex-row items-start justify-center gap-5 text-lg w-full ">
             <p class="font-semibold text-nowrap">Ingresa un numero: </p>
             <div class="flex flex-col gap-2">
@@ -28,6 +28,18 @@
                 <button id="EncuentraMayor" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Encontrar numero mayor</button>
             </div>
             <span id="MuestraMayor" class="font-medium p-2 w-1/2"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.3 Calificaciones</h4>
+        <div class="flex flex-row items-start justify-center gap-5 text-lg w-full ">
+            <p class="font-semibold text-nowrap">Ingresa una calificacion: </p>
+            <div class="flex flex-col gap-2">
+                <input type="text" name="" id="EntradaCalificacion" placeholder="Ingresa calificacion..." class="border-2 p-2 border-solid rounded-xl">
+                <button id="AgregaCalificacion" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Agregar calificacion</button>
+                <button id="ReiniciaCalis" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Reiniciar calificaciones</button>
+            </div>
+            <span id="MuestraCalis" class="font-medium p-2 w-[23%] whitespace-pre border-2 border-solid rounded-lg overflow-auto"></span>
         </div>
     </section>
     <script>
@@ -44,7 +56,7 @@
             }
         });
 
-        //Practica 2.2 
+        //Practica 2.2 Encontrar Numero Mayor
         const numeros = []; 
         const MayorEntrada = document.getElementById('MayorEntrada'); 
         const AgregaNumero = document.getElementById('AgregaNumero'); 
@@ -74,13 +86,45 @@
                     } 
                 } 
             } 
-
             if (empates.length > 0) {
                 MuestraMayor.textContent = "Hay un empate entre los siguientes indices: "+ empates.toString();
             } else {
                 MuestraMayor.textContent = "El mayor numero encontrado es: "+ mayor.numero;
             }
         });
+
+        //Practica 2.3 Calificaciones 
+        const calificaciones = [];
+        const EntradaCalificacion = document.getElementById('EntradaCalificacion'); 
+        const AgregaCalificacion = document.getElementById('AgregaCalificacion'); 
+        const ReiniciaCalis = document.getElementById('ReiniciaCalis'); 
+        const MuestraCalis = document.getElementById('MuestraCalis'); 
+
+        AgregaCalificacion.addEventListener('click', () => {
+            calificaciones.push(Number(EntradaCalificacion.value)); 
+            EntradaCalificacion.value = '';
+            MuestraCalis.textContent = '';
+            calificaciones.forEach((calificacion, index) => {
+                if (calificacion >= 0 && calificacion < 6) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - REPROBADO\n`; 
+                else if(calificacion >= 6 && calificacion < 8) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - REGULAR\n`; 
+                else if(calificacion >= 8 && calificacion < 9) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - BIEN\n`; 
+                else if(calificacion >= 9 && calificacion < 10) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - MUY BIEN\n`; 
+                else if(calificacion === 10) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - EXCELENTE\n`; 
+                else MuestraCalis.textContent += `Numero NO VALIDO en el arreglo en el indice: ${index}\n`; 
+            }) 
+        }); 
+        ReiniciaCalis.addEventListener('click', () => {
+            calificaciones.splice(0, calificaciones.length); 
+            MuestraCalis.textContent = ''; 
+            EntradaCalificacion.value = '';
+        });
+
+        //Practica 2.4 
     </script>
 </body>
 </html> 
