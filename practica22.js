@@ -1,7 +1,7 @@
 const numeros = [1, 2, 4, 2, 3];
 let empates = [];
 let mayor = {
-    index: 0, 
+    index: 0,  
     numero: 0, 
 }; 
 

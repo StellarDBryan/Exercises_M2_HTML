@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="space-y-10 py-10">
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.1 ¿Es numero par?</h4>
+        <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <input type="text" name="" id="EsParInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+            <span id="EsParOutput" class="font-medium p-2 w-1/2"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.2 Numero mayor</h4>
+        <div class="flex flex-row items-start justify-center gap-5 text-lg w-full ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <div class="flex flex-col gap-2">
+                <input type="text" name="" id="MayorEntrada" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+                <button id="AgregaNumero" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Agregar numero</button>
+            </div>
+            <div class="flex flex-col gap-2">
+                <span id="ArregloNumMayor" class=" p-2 w-42 h-12 rounded-lg overflow-hidden border-2 border-solid border-gray-200"></span>
+                <button id="EncuentraMayor" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Encontrar numero mayor</button>
+            </div>
+            <span id="MuestraMayor" class="font-medium p-2 w-1/2"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.3 Calificaciones</h4>
+        <div class="flex flex-row items-start justify-center gap-5 text-lg w-full ">
+            <p class="font-semibold text-nowrap">Ingresa una calificacion: </p>
+            <div class="flex flex-col gap-2">
+                <input type="text" name="" id="EntradaCalificacion" placeholder="Ingresa calificacion..." class="border-2 p-2 border-solid rounded-xl">
+                <button id="AgregaCalificacion" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Agregar calificacion</button>
+                <button id="ReiniciaCalis" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Reiniciar calificaciones</button>
+            </div>
+            <span id="MuestraCalis" class="font-medium p-2 w-[23%] whitespace-pre border-2 border-solid rounded-lg overflow-auto"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.4 ¿Es numero valido?</h4>
+        <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <input type="text" name="" id="EsValidoInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+            <span id="EsValidoOutput" class="font-medium p-2 w-1/2"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.5 Serie Fibonacci</h4>
+        <div class="flex flex-row items-center justify-center gap-5 text-lg w-3/4 ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <input type="text" name="" id="FibonacciInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+            <button id="FibonacciBtn" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Obtener Fibonacci</button>
+            <span id="FibonacciOutput" class="font-medium p-2 w-1/2 whitespace-pre"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.6 Numeros Palindromos</h4>
+        <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <input type="text" name="" id="PalindromoInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+            <button id="PalindromoBtn" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Verificar Palindromo</button>
+            <span id="PalindromoOutput" class="font-medium p-2 w-auto"></span>
+        </div>
+    </section>
+    <script>
+        //Practica 2.1 Par / Impar
+        const EsParInput = document.getElementById('EsParInput'); 
+        const EsParOutput = document.getElementById('EsParOutput');
+        EsParInput.addEventListener('input', () => {
+            if (EsParInput.value == 0) {
+                EsParOutput.textContent = " Es Indefinido ";
+            } else if ((EsParInput.value % 2) == 0) {
+                EsParOutput.textContent = " Es Par ";
+            } else if ((EsParInput.value % 2) != 0) {
+                EsParOutput.textContent = " Es Impar ";
+            }
+        });
+
+        //Practica 2.2 Encontrar Numero Mayor
+        const numeros = []; 
+        const MayorEntrada = document.getElementById('MayorEntrada'); 
+        const AgregaNumero = document.getElementById('AgregaNumero'); 
+        const ArregloNumMayor = document.getElementById('ArregloNumMayor'); 
+        const EncuentraMayor = document.getElementById('EncuentraMayor'); 
+        const MuestraMayor = document.getElementById('MuestraMayor'); 
+
+        AgregaNumero.addEventListener('click', () => {
+            numeros.push(MayorEntrada.value); 
+            ArregloNumMayor.textContent = numeros.join('-');
+            MayorEntrada.value = '';
+        })
+        EncuentraMayor.addEventListener('click', () => {
+            const empates =[]; 
+            let mayor = { index: 0, numero: 0}; 
+            
+            for (let index = 0; index < numeros.length; index++) {
+                if (numeros[index] > mayor.numero) {
+                    mayor.index = index+1;
+                    mayor.numero = numeros[index]; 
+                    empates.splice(0, empates.length);
+                } else if(numeros[index] === mayor.numero){
+                    if (empates.length === 0) {
+                        empates.push(mayor.index, index+1);
+                    } else {
+                        empates.push(index+1); 
+                    } 
+                } 
+            } 
+            if (empates.length > 0) {
+                MuestraMayor.textContent = "Hay un empate entre los siguientes indices: "+ empates.toString();
+            } else {
+                MuestraMayor.textContent = "El mayor numero encontrado es: "+ mayor.numero;
+            }
+        });
+
+        //Practica 2.3 Calificaciones 
+        const calificaciones = [];
+        const EntradaCalificacion = document.getElementById('EntradaCalificacion'); 
+        const AgregaCalificacion = document.getElementById('AgregaCalificacion'); 
+        const ReiniciaCalis = document.getElementById('ReiniciaCalis'); 
+        const MuestraCalis = document.getElementById('MuestraCalis'); 
+
+        AgregaCalificacion.addEventListener('click', () => {
+            calificaciones.push(Number(EntradaCalificacion.value)); 
+            EntradaCalificacion.value = '';
+            MuestraCalis.textContent = '';
+            calificaciones.forEach((calificacion, index) => {
+                if (calificacion >= 0 && calificacion < 6) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - REPROBADO\n`; 
+                else if(calificacion >= 6 && calificacion < 8) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - REGULAR\n`; 
+                else if(calificacion >= 8 && calificacion < 9) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - BIEN\n`; 
+                else if(calificacion >= 9 && calificacion < 10) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - MUY BIEN\n`; 
+                else if(calificacion === 10) 
+                    MuestraCalis.textContent += `${index+1}. C: ${calificacion} - EXCELENTE\n`; 
+                else MuestraCalis.textContent += `Numero NO VALIDO en el arreglo en el indice: ${index}\n`; 
+            }) 
+        }); 
+        ReiniciaCalis.addEventListener('click', () => {
+            calificaciones.splice(0, calificaciones.length); 
+            MuestraCalis.textContent = ''; 
+            EntradaCalificacion.value = '';
+        });
+
+        //Practica 2.4 Numero Validos
+        const EsValidoInput = document.getElementById('EsValidoInput'); 
+        const EsValidoOutput = document.getElementById('EsValidoOutput');
+        EsValidoInput.addEventListener('input', () => {
+            if (Number(EsValidoInput.value) >= 0 && Number(EsValidoInput.value) <= 100) 
+                EsValidoOutput.textContent = `${Number(EsValidoInput.value)} es un numero valido. `; 
+            else 
+            EsValidoOutput.textContent = `${Number(EsValidoInput.value)} es un valor fuera de rango. `; 
+        }); 
+
+        // Practica 2.5 Serie Fibonacci 
+        const FibonacciInput = document.getElementById('FibonacciInput'); 
+        const FibonacciOutput = document.getElementById('FibonacciOutput'); 
+        const FibonacciBtn = document.getElementById('FibonacciBtn'); 
+        FibonacciBtn.addEventListener('click', () => {
+            const numero = FibonacciInput.value;
+            let list = []; 
+            function Fibonacci(numero){
+                if (numero === 0) {
+                    return 0;
+                }
+                else if(numero === 1) {
+                    return 1;
+                }
+                else if (numero >= 2) {
+                    return (Fibonacci(numero-1) + Fibonacci(numero-2)); 
+                }
+            } 
+
+            for (let index = 0; index <= numero; index++) {
+                list.push(Fibonacci(index));
+            }
+
+            FibonacciOutput.textContent = `Fibonacci de ${numero}: ${Fibonacci(numero)}\nSerie: ${list.join(', ')}`; 
+            FibonacciInput.value = '';
+        }); 
+
+        // Practica 2.6 Numeros Palindromos 
+        const PalindromoInput = document.getElementById('PalindromoInput'); 
+        const PalindromoOutput = document.getElementById('PalindromoOutput');
+        const PalindromoBtn = document.getElementById('PalindromoBtn');
+        PalindromoBtn.addEventListener('click', () => {
+            const num = PalindromoInput.value; 
+            PalindromoInput.value = '';
+            function EsPalindromo(num){
+                for (let i=0, j=num.length-1; i < j; i++, j--) {
+                    if(num.charAt(i) != num.charAt(j))
+                        return num+" NO es palindromo. ";
+                } 
+                return num+" SI es palindromo. ";
+            }
+            PalindromoOutput.textContent = EsPalindromo(num);
+        }); 
+    </script>
+</body>
+</html> 
