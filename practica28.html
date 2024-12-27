@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="space-y-10">
+<body class="space-y-10 py-10">
     <section class="flex flex-col items-center w-full gap-5">
         <h4 class="text-4xl font-bold text-gray-800">P-2.1 ¿Es numero par?</h4>
         <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
@@ -57,6 +57,15 @@
             <input type="text" name="" id="FibonacciInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
             <button id="FibonacciBtn" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Obtener Fibonacci</button>
             <span id="FibonacciOutput" class="font-medium p-2 w-1/2 whitespace-pre"></span>
+        </div>
+    </section>
+    <section class="flex flex-col items-center w-full gap-5">
+        <h4 class="text-4xl font-bold text-gray-800">P-2.6 Numeros Palindromos</h4>
+        <div class="flex flex-row items-center justify-center gap-5 text-lg w-1/2 ">
+            <p class="font-semibold text-nowrap">Ingresa un numero: </p>
+            <input type="text" name="" id="PalindromoInput" placeholder="Ingresa numero..." class="border-2 p-2 border-solid rounded-xl">
+            <button id="PalindromoBtn" class="px-4 py-2 bg-gray-700 text-gray-50 font-semibold rounded-lg roudned-lg">Verificar Palindromo</button>
+            <span id="PalindromoOutput" class="font-medium p-2 w-auto"></span>
         </div>
     </section>
     <script>
@@ -179,7 +188,21 @@
         }); 
 
         // Practica 2.6 Numeros Palindromos 
-        
+        const PalindromoInput = document.getElementById('PalindromoInput'); 
+        const PalindromoOutput = document.getElementById('PalindromoOutput');
+        const PalindromoBtn = document.getElementById('PalindromoBtn');
+        PalindromoBtn.addEventListener('click', () => {
+            const num = PalindromoInput.value; 
+            PalindromoInput.value = '';
+            function EsPalindromo(num){
+                for (let i=0, j=num.length-1; i < j; i++, j--) {
+                    if(num.charAt(i) != num.charAt(j))
+                        return num+" NO es palindromo. ";
+                } 
+                return num+" SI es palindromo. ";
+            }
+            PalindromoOutput.textContent = EsPalindromo(num);
+        }); 
     </script>
 </body>
 </html> 
